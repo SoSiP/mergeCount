@@ -1,5 +1,6 @@
 # http://www.gnu.org/software/automake
-
+*.o
+mergeCounts
 Makefile.in
 /ar-lib
 /mdate-sh
