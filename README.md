@@ -6,7 +6,7 @@ TODO
 ## Installation
 
 1. Clone this repository : `git clone https://github.com/SoSiP/mergeCount.git`
-2. module load htslib
+2. module load bioinfo/htslib/1.3
 3. Compile mergeCounts : `make`
 3. Place the mergeCounts binary somewhere acessible in your `$PATH`
 
