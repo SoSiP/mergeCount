@@ -1,9 +1,15 @@
-CC=gcc
-CFLAGS=-g -Wall -O2 -Wno-unused-function
-HEADERS=src/sam.h
-OBJECTS=$(HEADERS:.h=.o)
+CC=g++
+CFLAGS=-g -Wall -std=c++11 -O3 -lhts -Wno-unused-function 
+
+.PHONY: clean rebuild
 
 all:mergeCounts
 
-mergeCounts: mergeCounts.c $(HEADERS) $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) $< -o $@ 
+mergeCounts: mergeCounts.c 
+			$(CC) $(CFLAGS) $< -o $@ 
+
+clean:
+			rm -f mergeCounts *.o
+
+rebuild: clean all
+
