@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
   uint32_t *tarlen = bamHdr->target_len ;
   /*TODO : Allocated
    * good value*/
-  size_t target_windows[90000000];
+  size_t target_windows[1000000];
 
   for(i=0;tarlen[i];i++){
     target_windows[i]=windows_nb;
@@ -34,8 +34,11 @@ int main(int argc, char *argv[]){
       int32_t pos = aln->core.pos +1;
       char *chr = bamHdr->target_name[aln->core.tid] ;
       int32_t mate_pos = aln->core.mpos +1;
-      char *mate_chr = bamHdr -> target_name[aln->core.mtid];  
-
+      char *mate_chr = bamHdr -> target_name[aln->core.mtid];
+      if (i%1000000==0){
+            std::cout<<i<<std::endl;
+      }
+      i++;
       if((strcmp(chr, mate_chr) != 0) || (std::abs(pos-mate_pos)>10000)){
         pos_act = target_windows[aln->core.tid]+pos/10000+1;
         pos_act_mate = target_windows[aln->core.mtid]+mate_pos/10000+1;
@@ -43,13 +46,13 @@ int main(int argc, char *argv[]){
       }
     }
 
-  }
+  }/*
   for(i=0;i<windows_nb;i++){
     for(j=0;j<windows_nb;j++){
       std::cout<<matrice[i][j]<<"\t";
     }
     std::cout<<"\n";
-  }
+  }*/
   bam_destroy1(aln);
   sam_close(fp_in);
   return 0;
